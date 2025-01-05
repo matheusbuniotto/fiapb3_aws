@@ -1,0 +1,766 @@
+{
+	"jobConfig": {
+		"name": "ETL B3",
+		"description": "",
+		"role": "arn:aws:iam::230437527135:role/LabRole",
+		"command": "glueetl",
+		"version": "5.0",
+		"runtime": null,
+		"workerType": "G.1X",
+		"numberOfWorkers": 2,
+		"maxCapacity": 2,
+		"jobRunQueuingEnabled": false,
+		"maxRetries": 1,
+		"timeout": 3,
+		"maxConcurrentRuns": 1,
+		"security": "none",
+		"scriptName": "ETL B3.py",
+		"scriptLocation": "s3://aws-glue-assets-230437527135-us-east-1/scripts/",
+		"language": "python-3",
+		"spark": true,
+		"sparkConfiguration": "standard",
+		"jobParameters": [],
+		"tags": [],
+		"jobMode": "VISUAL_MODE",
+		"createdOn": "2024-12-14T17:13:07.256Z",
+		"developerMode": false,
+		"connectionsList": [],
+		"temporaryDirectory": "s3://aws-glue-assets-230437527135-us-east-1/temporary/",
+		"logging": true,
+		"glueHiveMetastore": true,
+		"etlAutoTuning": true,
+		"metrics": true,
+		"observabilityMetrics": true,
+		"pythonPath": "s3://aws-glue-studio-transforms-510798373988-prod-us-east-1/gs_common.py,s3://aws-glue-studio-transforms-510798373988-prod-us-east-1/gs_derived.py",
+		"bookmark": "job-bookmark-disable",
+		"sparkPath": "s3://aws-glue-assets-230437527135-us-east-1/sparkHistoryLogs/",
+		"flexExecution": false,
+		"minFlexWorkers": null,
+		"maintenanceWindow": null
+	},
+	"dag": {
+		"node-1734199106756": {
+			"nodeId": "node-1734199106756",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1734195984844"
+			],
+			"name": "Change Schema",
+			"generatedNodeName": "ChangeSchema_node1734199106756",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "stock_code",
+					"fromPath": [
+						"code"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "stock_name",
+					"fromPath": [
+						"stock_name"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "stock_type",
+					"fromPath": [
+						"stock_type"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "theoretical_quantity",
+					"fromPath": [
+						"theoretical_quantity"
+					],
+					"toType": "bigint",
+					"fromType": "bigint",
+					"dropped": false
+				},
+				{
+					"toKey": "share_of_total",
+					"fromPath": [
+						"share_of_total"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "portfolio_date",
+					"fromPath": [
+						"portfolio_date"
+					],
+					"toType": "date",
+					"fromType": "date",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "max_historical_alocation",
+					"fromPath": [
+						"max_historical_alocation"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "first_time_on_portfolio",
+					"fromPath": [
+						"first_time_on_portfolio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "days_since_first_occurences",
+					"fromPath": [
+						"days_since_first_occurences"
+					],
+					"toType": "int",
+					"fromType": "int",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1734195803724": {
+			"nodeId": "node-1734195803724",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1734195391093"
+			],
+			"name": "Change Schema",
+			"generatedNodeName": "ChangeSchema_node1734195803724",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "code",
+					"fromPath": [
+						"code"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "stock_name",
+					"fromPath": [
+						"stock"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "stock_type",
+					"fromPath": [
+						"type"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "theoretical_quantity",
+					"fromPath": [
+						"theoretical_quantity"
+					],
+					"toType": "bigint",
+					"fromType": "bigint",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "share_of_total",
+					"fromPath": [
+						"part_percentual"
+					],
+					"toType": "float",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "portfolio_date",
+					"fromPath": [
+						"date"
+					],
+					"toType": "date",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1734195391093": {
+			"nodeId": "node-1734195391093",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1734195391093",
+			"classification": "DataSource",
+			"type": "S3",
+			"isCatalog": false,
+			"format": "parquet",
+			"paths": [
+				"s3://fiap-fase2/bronze/"
+			],
+			"compressionType": null,
+			"exclusions": [],
+			"groupFiles": null,
+			"groupSize": null,
+			"recurse": true,
+			"maxBand": null,
+			"maxFilesInBand": null,
+			"additionalOptions": {
+				"boundedSize": null,
+				"boundedFiles": null,
+				"enableSamplePath": false,
+				"samplePath": "s3://fiap-fase2/bronze/date=2024-12-16/data.parquet",
+				"boundedOption": null
+			},
+			"outputSchemas": [
+				[
+					{
+						"key": "code",
+						"fullPath": [
+							"code"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "stock",
+						"fullPath": [
+							"stock"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "type",
+						"fullPath": [
+							"type"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "theoretical_quantity",
+						"fullPath": [
+							"theoretical_quantity"
+						],
+						"type": "bigint",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "part_percentual",
+						"fullPath": [
+							"part_percentual"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "date",
+						"fullPath": [
+							"date"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					}
+				]
+			],
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1734195872035": {
+			"nodeId": "node-1734195872035",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1734195803724",
+				"node-1734195449580"
+			],
+			"name": "Join",
+			"generatedNodeName": "Join_node1734195872035",
+			"classification": "Transform",
+			"type": "Join",
+			"joinType": "left",
+			"columns": [
+				{
+					"from": "node-1734195803724",
+					"keys": [
+						"stock_name"
+					]
+				},
+				{
+					"from": "node-1734195449580",
+					"keys": [
+						"stock"
+					]
+				}
+			],
+			"columnConditions": [
+				"="
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1734195385427": {
+			"nodeId": "node-1734195385427",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1734198702204"
+			],
+			"name": "Aggregate",
+			"generatedNodeName": "Aggregate_node1734195385427",
+			"classification": "Transform",
+			"type": "Aggregate",
+			"parentsValid": true,
+			"calculatedType": "",
+			"groups": [
+				"stock"
+			],
+			"aggs": [
+				{
+					"column": "part_percentual",
+					"aggFunc": "max"
+				},
+				{
+					"column": "date",
+					"aggFunc": "min"
+				}
+			],
+			"codeGenVersion": 2
+		},
+		"node-1734196502221": {
+			"nodeId": "node-1734196502221",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1734199106756"
+			],
+			"name": "Save to s3",
+			"generatedNodeName": "Savetos3_node1734196502221",
+			"classification": "DataSink",
+			"type": "S3",
+			"streamingBatchInterval": 100,
+			"format": "glueparquet",
+			"compression": "snappy",
+			"path": "s3://fiap-output/refined/",
+			"partitionKeys": [
+				"portfolio_date"
+			],
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": true,
+				"updateBehavior": "UPDATE_IN_DATABASE",
+				"database": "default",
+				"table": "fact_ibov_by_date"
+			},
+			"updateCatalogOptions": "schemaAndPartitions",
+			"autoDataQuality": {
+				"isEnabled": false,
+				"evaluationContext": "EvaluateDataQuality_node1734196437720"
+			},
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1734198702204": {
+			"nodeId": "node-1734198702204",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1734195366908"
+			],
+			"name": "Change Schema v2",
+			"generatedNodeName": "ChangeSchemav2_node1734198702204",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "code",
+					"fromPath": [
+						"code"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "stock",
+					"fromPath": [
+						"stock"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "type",
+					"fromPath": [
+						"type"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "theoretical_quantity",
+					"fromPath": [
+						"theoretical_quantity"
+					],
+					"toType": "bigint",
+					"fromType": "bigint",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "part_percentual",
+					"fromPath": [
+						"part_percentual"
+					],
+					"toType": "float",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "date",
+					"fromPath": [
+						"date"
+					],
+					"toType": "date",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1734195926971": {
+			"nodeId": "node-1734195926971",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1734195872035"
+			],
+			"name": "Drop Fields",
+			"generatedNodeName": "DropFields_node1734195926971",
+			"classification": "Transform",
+			"type": "DropFields",
+			"paths": [
+				"stock"
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1734195366908": {
+			"nodeId": "node-1734195366908",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1734195366908",
+			"classification": "DataSource",
+			"type": "S3",
+			"isCatalog": false,
+			"format": "parquet",
+			"paths": [
+				"s3://fiap-fase2/bronze/"
+			],
+			"compressionType": null,
+			"exclusions": [],
+			"groupFiles": null,
+			"groupSize": null,
+			"recurse": true,
+			"maxBand": null,
+			"maxFilesInBand": null,
+			"additionalOptions": {
+				"boundedSize": null,
+				"boundedFiles": null,
+				"enableSamplePath": false,
+				"samplePath": "s3://fiap-fase2/bronze/date=2024-12-16/data.parquet",
+				"boundedOption": null
+			},
+			"outputSchemas": [
+				[
+					{
+						"key": "code",
+						"fullPath": [
+							"code"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "stock",
+						"fullPath": [
+							"stock"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "type",
+						"fullPath": [
+							"type"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "theoretical_quantity",
+						"fullPath": [
+							"theoretical_quantity"
+						],
+						"type": "bigint",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "part_percentual",
+						"fullPath": [
+							"part_percentual"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "date",
+						"fullPath": [
+							"date"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					}
+				]
+			],
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1734195449580": {
+			"nodeId": "node-1734195449580",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1734195385427"
+			],
+			"name": "Max Amount and First Ocurrence",
+			"generatedNodeName": "MaxAmountandFirstOcurrence_node1734195449580",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "stock",
+					"fromPath": [
+						"stock"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "max_historical_alocation",
+					"fromPath": [
+						"max(part_percentual)"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "first_time_on_portfolio",
+					"fromPath": [
+						"min(date)"
+					],
+					"toType": "string",
+					"fromType": "date",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1734195984844": {
+			"nodeId": "node-1734195984844",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1734195926971"
+			],
+			"name": "Create Date Diff",
+			"generatedNodeName": "CreateDateDiff_node1734195984844",
+			"classification": "Transform",
+			"type": "DynamicTransform",
+			"parameters": [
+				{
+					"name": "colName",
+					"value": [
+						"days_since_first_occurences"
+					],
+					"isOptional": false,
+					"type": "str",
+					"listType": null
+				},
+				{
+					"name": "expr",
+					"value": [
+						"DATE_DIFF(portfolio_date,  first_time_on_portfolio)"
+					],
+					"isOptional": false,
+					"type": "str",
+					"listType": null
+				}
+			],
+			"functionName": "gs_derived",
+			"path": "s3://aws-glue-studio-transforms-510798373988-prod-us-east-1/gs_derived.py",
+			"version": "1.0.0",
+			"transformName": "gs_derived",
+			"outputSchemas": [
+				[
+					{
+						"key": "code",
+						"fullPath": [
+							"code"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "stock_name",
+						"fullPath": [
+							"stock_name"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "stock_type",
+						"fullPath": [
+							"stock_type"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "theoretical_quantity",
+						"fullPath": [
+							"theoretical_quantity"
+						],
+						"type": "bigint",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "share_of_total",
+						"fullPath": [
+							"share_of_total"
+						],
+						"type": "float",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "portfolio_date",
+						"fullPath": [
+							"portfolio_date"
+						],
+						"type": "date",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "max_historical_alocation",
+						"fullPath": [
+							"max_historical_alocation"
+						],
+						"type": "float",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "first_time_on_portfolio",
+						"fullPath": [
+							"first_time_on_portfolio"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "days_since_first_occurences",
+						"fullPath": [
+							"days_since_first_occurences"
+						],
+						"type": "int",
+						"glueStudioType": null,
+						"children": null
+					}
+				]
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		}
+	},
+	"hasBeenSaved": false,
+	"usageProfileName": null
+}
